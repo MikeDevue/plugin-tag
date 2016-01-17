@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<title>Geeklog タグプラグインのインストール/アンインストール</title>
+	<style type="text/css">
+	<!-->
+		body {
+			color: black;
+			background-color: white;
+			line-height: 1.5em;
+		}
+		table {
+		 	border: solid 1px black;
+			border-collapse: collapse;
+		}
+		h2 {
+			margin-top: 50px;
+			border-left: solid 10px #0033cc;
+			padding-left: 5px;
+		}
+		code {
+			line-height: 1.5em;
+			display: block;
+			width: 80%;
+			border: dotted 1px black;
+			background-color: #ccffff;
+			padding: 5px;
+			margin: 10px;
+		}
+		th,
+		td
+		{
+		 	border: solid 1px black;
+			padding: 5px;
+		}
+		.geeklog {
+			background-color: yellow;
+		}
+		.public {
+			background-color: #99ff00;
+		}
+		.admin {
+			background-color: aqua;
+		}
+		.center {
+			text-align: center;
+		}
+		li {
+			padding: 5px 5px 10px 5px;
+		}
+		#copyright {
+			padding: 0.5em;
+			border: solid 1px aqua;
+			background-color: #ccffff;
+			font-style: italic;
+		}
+		.fix {
+			color: white;
+			background-color: red;
+			font-weight: bold;
+		}
+		.new {
+			color: white;
+			background-color: blue;
+			font-weight: bold;
+		}
+	<! -->
+	</style>
+</head>
+
+<body>
+	<h1>Geeklog タグプラグインのインストール/アンインストール</h1>
+
+	<table>
+		<tr>
+			<th>プラグイン名</th>
+			<td>タグプラグイン</td>
+		</tr>
+		<tr>
+			<th>バージョン</th>
+			<td>0.6.0</td>
+		</tr>
+		<tr>
+			<th>Geeklogのバージョン</th>
+			<td>1.7.1以降</td>
+		</tr>
+		<tr>
+			<th>作者</th>
+			<td>mystral-kk - geeklog AT mystral-kk DOT net</td>
+		</tr>
+		<tr>
+			<th>ライセンス</th>
+			<td>GPL</td>
+		</tr>
+	</table>
+	
+	<h2>概要</h2>
+	
+	<p>タグプラグインを使用すると、記事や静的ページにタグをつけて簡単に分類できるようになります。</p>
+	
+	<h2>インストール</h2>
+	
+	<p>以下の説明で、</p>
+	<ul>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span>は、システムの config.php が存在するディレクトリ</li>
+		<li><span class="public">&lt;public_html&gt;</span>は、lib-common.php が存在するディレクトリ</li>
+		<li><span class="admin">&lt;admin&gt;</span>は、管理者用ファイルが存在するディレクトリ（ふつうは、<span class="public">&lt;public_html&gt;</span>ディレクトリの下）</li>
+	</ul>
+	<p>を表しています。</p>
+
+	<ol>
+		<li>タグプラグインはテーブルを追加するので、管理者メニューの「DBのバックアップ」やphpMyAdminを使用して、事前にGeeklogのデータベースをバックアップしておきます。</li>
+		<li>タグプラグインのアーカイブを<span class="geeklog">&lt;geeklog_dir&gt;</span>/pluginsディレクトリに展開します。tagという名前のディレクトリができます。</li>
+		<li>public_htmlディレクトリとadminディレクトリを作ります。htmlファイルを納めるディレクトリ（普通は <span class="public">&lt;public_html&gt;</span>）の下に、tagという名前のディレクトリを作ります。<span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリの下にも tagという名前のディレクトリを作ります。</li>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/tag/ ディレクトリに移動します。adminディレクトリの内容を、3.で作成した <span class="admin">&lt;admin&gt;</span>/plugins/tag/ ディレクトリにコピーします。public_htmlディレクトリの内容を、3.で作成した <span class="public">&lt;public_html&gt;</span>/tag/ ディレクトリにコピーします。</li>
+		<li>tagディレクトリの config.php ファイルを編集し、データベースのテーブルのプレフィックスとゲストユーザのアクセス権、表示設定などを確認します。デフォルトでは、Geeklogのテーブルのプレフィックスを使用し、ゲストユーザのアクセスを認めないようになっています。</li>
+		<li>Rootユーザとしてログインし、プラグインエディタからインストールを実行します。失敗した場合には、エラーログ（error.log）を調べます。この時点で、タグプラグインはインストールされ、機能しているはずです。tag アイコンをクリックすると、管理機能ページへジャンプするでしょう。</li>
+		<li>セキュリティを設定します。インストール直後には、タグプラグインの管理権限を持っているのは、Rootユーザだけです。ユーザエディタやグループエディタを使用して、管理権限を他の人やグループに委譲することができます</li>
+	</ol>
+
+	<h2>アンインストール</h2>
+
+	<ol>
+		<li>プラグインエディタから、タグプラグインをアンインストールします。このとき、タグプラグインが使用していたテーブルは破棄され、その中に記録されていたデータも削除されます。</li>
+		<li>インストールの過程で作成した3つのディレクトリ（<span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/tag/ <span class="public">&lt;public_html&gt;</span>/tag/ and <span class="admin">&lt;admin&gt;</span>/plugins/tag/ を削除します。</li>
+	</ol>
+	
+	<h2>使用法</h2>
+	
+	<p>記事や静的ページを書いていてタグをつけたくなったら、<code>[tag:好きなタグ名]</code>を入力します。次のように複数のタグを指定することもできます。<code>[tag:Geeklog plugins]</code>タグとタグの間はスペースで区切ります。Zend Framework のような複数の単語で構成されるタグを登録するには、アンダースコア(_)を使って Zend_Framework と入力してください。デフォルトの設定では、タグの大文字と小文字は区別されません。たとえば、Geeklog は、geeklog や GEEKLOG と同じとみなされます。</p>
+	
+	<ul>
+		<li>ある種のタグを禁止したい場合には、管理者メニューから禁止できます。やはり、大文字と小文字は区別されません。</li>
+		<li>サイトのブロックに「タグクラウド」を表示する場合は、PHPブロックを作成し、関数名に<strong>phpblock_tag_cloud</strong>を入力します。<br><strong>メモ</strong>：バージョン0.2.0以降、タグクラウドブロックはインストール時に自動的に作成されます。</li>
+		<li>タグクラウドの外観は、<span class="geeklog">&lt;geeklog&gt;</span>/plugins/tag/templates/にあるテンプレートとCSS(<span class="public">&lt;public_html&gt;</span>/tag/tag.css)で変更できます。なお、<span class="public">&lt;public_html&gt;</span>/layout/your_theme/tag.cssが存在する場合は、そちらの方が優先されます。</li>
+		<li>(バージョン0.3.0以降)  サイトのブロックに「タグメニュー」を表示する場合は、PHPブロックを作成し、関数名に<strong>phpblock_tag_menu</strong>を入力します。メニュー項目はコントロールパネルで編集できます。<br><strong>メモ</strong>：バージョン0.3.0以降、タグメニューブロックはインストール時に自動的に作成されます。</li>
+	</ul>
+	
+	<h2>設定</h2>
+	
+	<p>管理者としてログインし、「コンフィギュレーション-&gt;タグプラグイン」で、タグプラグインの動作を変更することができます。利用可能なオプションは次の通りです。</p>
+	<table>
+		<caption>[オプション]</caption>
+		<tr>
+			<th style="width: 40%;">設定（変数名）</th>
+			<th>デフォルト（既定）値</th>
+			<th>説明</th>
+		</tr>
+		<tr>
+			<td><a name="desc_hidetagmenu">メニューに表示しない</a>('hidetagmenu')</td>
+			<td>いいえ</td>
+			<td>「いいえ」にすると「タグ」をトップメニューに表示しません。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_default_block_name">タグクラウドブロック名の初期値</a>('default_block_name')</td>
+			<td>'tag_cloud_block'</td>
+			<td>インストール時に作成されるタグクラウドブロックの名前です。Geeklog-1.4.1以降を使っている場合、タグプラグインの有効/無効と連動して表示/非表示になります。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_tag_name">タグの識別子</a>('tag_name')</td>
+			<td>tag</td>
+			<td>[tag:foo]のように記事の中で使用するタグの名前。もっと短い[t:foo]のようにしてもよいでしょう。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_max_tag_len">タグの長さの最大値</a>('max_tag_len')</td>
+			<td>60</td>
+			<td>タグの長さの最大値（単位：バイト）。255を越えてはいけません。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_tag_case_sensitive">タグの大文字小文字を区別する</a>('tag_case_sensitive')</td>
+			<td>いいえ</td>
+			<td>「はい」にすると、たとえば、Geeklog というタグは geeklog というタグと違うものと見なされます。このオプションを変更した場合は、タグプラグインをインストールし直してください。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_tag_stemming">タグの語尾正規化を行う</a>('tag_stemming')</td>
+			<td>いいえ</td>
+			<td>「はい」にすると、アルファベットだけで構成されるタグは語幹だけに切り詰められます（英語のみ）。たとえば、realize というタグは real に切り詰められ、結果として realize というタグは real というタグと同じものと見なされます。<br><br><strong>警告</strong>: この機能は実験的なものです。たとえば、Firefox というタグは切り詰められて、Firefoxi になります。したがって、このオプションを「はい」に設定することは当分の間（おそらく、ずっと）お勧めしません。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_tag_check_badword">バッドワードリストを使用する</a>('tag_check_badword')</td>
+			<td>はい</td>
+			<td>「はい」にすると、禁止語リストを使用し、あるタグが禁止語に当たるとみなされた場合、言語ファイルで定義されている$LANG_TAG['badword_replace']に自動的に置き換えられます。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_tag_cloud_spacer">タグクラウドのスペーサ</a>('tag_cloud_spacer')</td>
+			<td>&nbsp;&nbsp;（半角スペース2個分）</td>
+			<td>タグクラウドを表示するときに使うタグとタグの間の区切りの文字列。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_max_tag_cloud">タグクラウドに表示されるタグの最大数</a>('max_tag_cloud')</td>
+			<td>30</td>
+			<td>public_html/tag/index.phpで表示されるタグクラウドの最大数。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_max_tag_cloud_in_block">タグクラウドブロックに表示されるタグの最大数</a>('max_tag_cloud_in_block')</td>
+			<td>20</td>
+			<td>サイドブロックで表示されるタグクラウドの最大数。</td>
+		</tr>
+		<tr>
+			<td>タグレベルの上限値('tag_cloud_threshold')</td>
+			<td>
+				レベル 0 = 1<br>
+				レベル 1 = 2<br>
+				レベル 2 = 3<br>
+				レベル 3 = 4<br>
+				レベル 4 = 5<br>
+				レベル 5 = 6<br>
+				レベル 6 = 7<br>
+				レベル 7 = 8<br>
+				レベル 8 = 9<br>
+				レベル 9 = 10<br>
+			</td>
+			<td>タグクラウドの個々のタグのレベルを決めるタグの出現回数の上限値。タグクラウドのタグは10段階に分けられています(level 0からlevel 9まで)。タグの数がレベル X以下のタグはレベル Xに属します。個々のレベルはCSS（カスケイディングスタイルシート）のクラスと対応しているので、レベルに応じてタグのスタイルを変えることができます。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_tag_cloud_threshold_max_count">パーセントシステムへ切り替える上限値</td>
+			<td>20</td>
+			<td>タグの数がこの設定値を超えると、タグレベルをタグの出現頻度に基づいたパーセンテージで計算します。タグの数がこの設定値以下の場合は従来通り、タグレベルに指定した数で計算します。パーセントシステムへ切り替えたくない場合は、大きな数値（999999など）を指定してください。Tomさんに感謝します。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_replace_underscore">タグのアンダースコアをスペースに置換して表示</a>('replace_underscore')</td>
+			<td>いいえ</td>
+			<td>「はい」にすると、タグに含まれるアンダースコア('_')をスペースに置き換えて表示します。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_num_keywords">keywordsタグに表示するキーワード数の上限</a>('num_keywords')</td>
+			<td>0</td>
+			<td>&lt;meta name="keywords" content="foo,bar"&gt;タグに出力するキーワードの数。0にすると、このメタタグは出力されません。</td>
+		</tr>
+		<tr>
+			<td><a name="desc_publish_as_template_vars">タグをテンプレート変数として出力</a><a name="desc_CONF_publish_as_template_vars">('publish_as_template_vars')</a></td>
+			<td>いいえ</td>
+			<td>「はい」にすると、タグは記事中に表示されず、テンプレート変数({tag_label}と{tag_part})として、'storytext.thtml', 'featuredstorytext.thtml', 'archivestorytext.thtml'の中で参照できるようになります。「いいえ」にすると、タグとして記事中に表示されます。<strong>この機能はGeeklog-1.4.1以降で有効です。</strong></td>
+		</tr>
+		<tr>
+			<td><a name="desc_add_num_items_to_menu">タグメニューでアイテム数を表示</a>('add_num_items_to_menu')</td>
+			<td>いいえ</td>
+			<td>「はい」にすると、タグメニューの項目の後にアイテム数を表示します。<br><strong>注意：この機能はシステムに負担をかける可能性があります。</strong></td>
+		</tr>
+		<tr>
+			<td><a name="desc_menu_indenter">タグメニューをインデントする文字列</a>('menu_indenter')</td>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td>タグメニューでインデントに使用する文字列を指定します。</td>
+		</tr>
+	</table>
+	
+	<h2>改訂履歴</h2>
+	
+	<table>
+		<tr>
+			<th style="width: 6em;">バージョン</th>
+			<th style="width: 6em;">公開日</th>
+			<th>説明</th>
+		</tr>
+		<tr>
+			<td class="center">0.6.0</td>
+			<td class="center">2012-06-17</td>
+			<td>
+				<span class="new">新規</span> Geeklog-2.0.0に対応しました。<br>
+				<span class="new">新規</span> 他のプラグインがタグを定義・表示するできるように、新たに3つのAPIを定義しました。dengenさんに感謝いたします。<br>
+				<ul>
+					<li>function plugin_tag_scanall_<strong>プラグイン名</strong>()</li>
+					<li>plugin_tag_scantag_<strong>プラグイン名</strong>($id)</li>
+					<li>plugin_tag_gettaggeditems_<strong>プラグイン名</strong>($id)</li>
+				</ul>
+				dengenさんに提供していただいた静的ページプラグイン用のコードは"非公開領域/plugins/tag/functions.inc"をご覧ください。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.5.4</td>
+			<td class="center">2011-10-02</td>
+			<td>
+				<span class="fix">修正</span> いくつかのバグを修正しました:<br>
+					<ul>
+						<li>登録したタグを修正できなかったバグ</li>
+						<li>空白文字のみの禁止タグを登録できていたバグ</li>
+						<li>登録済みの禁止タグを重ねて登録しようとするとSQLエラーが発生するバグ</li>
+						<li>チェックを入れずにタグを削除したり、禁止タグにしようとするとエラーが発生していたバグ</li>
+						<li>管理画面のHTMLが不適切であったバグ</li>
+					</ul><br>パッチを提供していただいたYoshinori Taharaさん(dengenさん)に感謝します。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.5.3</td>
+			<td class="center">2011-04-23</td>
+			<td>
+				<span class="fix">修正</span> 静的ページプラグインv1.6.3で導入されたテンプレート機能をサポートしました。パッチを提供していただいたTomさんに感謝します。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.5.2</td>
+			<td class="center">2011-01-04</td>
+			<td>
+				<span class="fix">修正</span> 表示するアイテムがないときにエラーが発生していたバグを修正しました。Tomさんに感謝します。<br>
+				<span class="new">新規</span> パーセントシステムへ切り替えるコンフィギュレーションを追加しました。詳しくは<a href="#desc_tag_cloud_threshold_max_count">こちら</a>をご覧ください。Tomさんに感謝します。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.5.1</td>
+			<td class="center">2010-12-28</td>
+			<td>
+				<span class="fix">修正</span> バージョン0.3.2以前からアップグレードする際にエラーが発生していたバグを修正しました。ご指摘いただいたひろろんさんに感謝します。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.5.0</td>
+			<td class="center">2010-12-27</td>
+			<td>
+				<span class="new">新規</span> 静的ページをサポートしました。<br>
+				<span class="new">新規</span> トップメニューに［タグ」を表示しないオプションを追加しました。<br>
+				<span class="fix">修正</span> 記事のIDを変えて保存した際に、タグの表示がおかしくなるバグを修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.4.1</td>
+			<td class="center">2008-08-18</td>
+			<td>
+				<span class="fix">修正</span> DokuWikiプラグインと協調できるように修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.4.0</td>
+			<td class="center">2008-08-12</td>
+			<td>
+				<span class="new">新規</span> Geeklog-1.5.0でも動作するように更新しました。Geeklog-1.5.0では、コンフィギュレーションで設定できるようになりました。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.3.2</td>
+			<td class="center">2008-02-28</td>
+			<td>
+				<span class="fix">修正</span> 不要なタグをデータベースから削除するように修正しました。<br>
+				<span class="fix">修正</span> $_TAG_CONF['publish_as_template_vars']の説明で、trueとfalseの説明が逆になっていたのを修正しました。<br>
+				<span class="fix">修正</span> &lt;meta name="keywords" content="foo,bar"&gt;タグを出力する際、'XHTML'がそのままヘッダに出力されていたバグを修正しました。<br>
+				<span class="fix">修正</span> $_TAG_CONF['replace_underscore']がtrueのときのアンダースコア('_')の扱いを改善しました。
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.3.1</td>
+			<td class="center">2008-01-23</td>
+			<td>
+				<span class="fix">修正</span> バージョン0.2.0から0.3.0にアップグレードする際にエラーが発生していたバグを修正しました。<br>
+				<span class="new">New!</span> タグメニューの項目にアイテム数を表示するオプションを追加しました。<br>
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.3.0</td>
+			<td class="center">2008-01-22</td>
+			<td>
+				<span class="new">New!</span> タグを利用したメニューを試験的に実装しました。<br>
+				<span class="new">New!</span> タグに含まれるアンダースコア('_')をスペースに置き換えて表示するオプションを追加しました。<br>
+				<span class="new">New!</span> 頻度の高いタグを&lt;meta name="keywords" content="foo,bar"&gt;タグの中に出力するオプションを追加しました。<br>
+				<span class="new">New!</span> タグをテンプレート変数として出力するオプションを追加しました。詳細は<a href="#CONF_publish_as_template_vars">こちら</a>をご覧ください。<br>
+			</td>
+		</tr>
+		<tr>
+			<td class="center">0.2.0</td>
+			<td class="center">2008-01-14</td>
+			<td><span class="fix">修正</span> URLリライトがオフのとき、タグクラウドの下に表示されていた記事へのリンクが間違って生成されていた問題に対応しました。<br><span class="new">New!</span> タグプラグインをインストールし直すときに、記事に含まれている[tag:foo]タグを自動的に登録する処理を追加しました。<br><span class="new">New!</span> 間違って登録したタグをコントロールパネルから削除する機能を追加しました。<br><span class="new">New!</span> インストール時にタグクラウドブロックを自動的に作成するようにしました。</td>
+		</tr>
+		<tr>
+			<td class="center">0.1.0</td>
+			<td class="center">2008-01-12</td>
+			<td>初期バージョン</td>
+		</tr>
+	</table>
+	
+	<p id="copyright">Copyright &copy; 2006-2012 mystral-kk</p>
+</body>
+</html>
