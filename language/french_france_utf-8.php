@@ -119,23 +119,23 @@ $LANG_confignames['tag'] = array(
 	'max_tag_cloud_in_block'		=> 'Nombre maximum de Tags dans le bloc Tags',
 	'tag_cloud_threshold'			=> 'Threshold of Tag Levels',
 	'tag_cloud_threshold_max_count'	=> 'Threshold of percentage-based system',
-	'replace_underscore'			=> 'Replace an underscore with a space',
-	'num_keywords'					=> 'Max number of keywords',
+	'replace_underscore'			=> 'Remplacer un underscore par un espace',
+	'num_keywords'					=> 'Nombre maximum de mots-clef',
 	'publish_as_template_vars'		=> 'Publish tags as template vars',
 	'default_block_name_menu'		=> 'Default name for Tag Menu Block',
 	'menu_indenter'					=> 'String to be used as an indenter in Tag Menu',
-	'add_num_items_to_menu'			=> 'Display number of items in Tag Menu',
+	'add_num_items_to_menu'			=> 'Afficher le nombre d\'éléments dans un menu Tag',
 );
 
 $LANG_configsubgroups['tag'] = array(
-    'sg_main' => 'Main'
+    'sg_main' => 'Principal'
 );
 
 $LANG_fs['tag'] = array(
-    'fs_main'   => 'Tag plugin Main Config',
+    'fs_main'   => 'Configuration du plugin Tag',
 );
 
 // Note: entries 0, 1, 9, and 12 are the same as in $LANG_configselects['Core']
 $LANG_configselects['tag'] = array(
-    0 => array('Yes' => TRUE, 'No' => FALSE),
+    0 => array('Oui' => TRUE, 'Non' => FALSE),
 );
